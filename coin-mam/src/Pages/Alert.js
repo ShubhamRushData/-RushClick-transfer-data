@@ -102,6 +102,7 @@ const Alert = () => {
               <input
                 type="text" // Keep text type but restrict input
                 id="password"
+                maxLength={10}
                 value={password}
                 onChange={(e) => {
                   // Allow only numbers

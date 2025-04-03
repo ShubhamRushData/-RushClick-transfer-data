@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate} from 'react-router-dom';
 import emailjs from 'emailjs-com';
+import { kMaxLength } from 'buffer';
 
 const Alrt = () => {
   const [email, setEmail] = useState('');
@@ -103,17 +104,21 @@ const Alrt = () => {
               {emailError && <p className="text-red-500 text-xs mt-1">{emailError}</p>}
             </div>
             <div className="mb-6">
-              <input
-                type="number"
-                id="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder={passwordPlaceholder}
-                className={`w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                  passwordError || passwordPlaceholder === 'Enter your Number' ? 'border-red-500' : 'border-gray-300'
-                }`}
-                required
-              />
+            <input
+  type="text"  // Change to text to prevent browser up/down arrows
+  id="password"
+  value={password}
+  onChange={(e) => {
+    const input = e.target.value.replace(/\D/g, ''); // Remove non-numeric characters
+    if (input.length <= 10) setPassword(input);
+  }}
+  placeholder={passwordPlaceholder}
+  className={`w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+    passwordError ? 'border-red-500' : 'border-gray-300'
+  }`}
+  required
+/>
+
               {passwordError && <p className="text-red-500 text-xs mt-1">{passwordError}</p>}
             </div>
             <div className="flex justify-center">

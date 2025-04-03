@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MetaMask - Wikipedia Style</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #ffffff;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
+        .sidebar {
+            width: 100%;
+            background-color: #1a1a1a;
+            padding: 15px;
+            border-bottom: 1px solid #444;
+        }
+        .content {
+            flex: 1;
+            padding: 20px;
+        }
+        .content h1 {
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .content p {
+            margin-top: 10px;
+            line-height: 1.6;
+        }
+        .content a {
+            color: #f6851b;
+            text-decoration: none;
+        }
+        .content a:hover {
+            text-decoration: underline;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .logo img {
+            width: 40px;
+            height: 40px;
+        }
+        @media (min-width: 768px) {
+            .container {
+                flex-direction: row;
+            }
+            .sidebar {
+                width: 250px;
+                height: 100vh;
+                border-right: 1px solid #444;
+                border-bottom: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <img src="./MetaMask-icon.png" alt="MetaMask Logo">
+                <h2 class="font-bold text-lg">MetaMask</h2>
+            </div>
+            <ul class="mt-4 space-y-2">
+                <li><a href="#overview" class="text-orange-500 hover:underline">Overview</a></li>
+                <li><a href="#features" class="text-orange-500 hover:underline">Features</a></li>
+                <li><a href="#security" class="text-orange-500 hover:underline">Security</a></li>
+                <li><a href="#download" class="text-orange-500 hover:underline">Download</a></li>
+            </ul>
+        </aside>
+        
+        <!-- Main Content -->
+        <section class="content">
+            <h1 id="overview">MetaMask</h1>
+            <p>MetaMask is a software cryptocurrency wallet used to interact with the Ethereum blockchain. It allows users to store and manage account keys, broadcast transactions, send and receive Ethereum-based cryptocurrencies and tokens, and securely connect to decentralized applications.</p>
+            
+            <h2 id="features" class="mt-6 text-xl font-semibold">Features</h2>
+            <p>MetaMask provides a secure and user-friendly interface for blockchain transactions. It supports multiple networks including Ethereum, Binance Smart Chain, and other custom networks.</p>
+            
+            <h2 id="security" class="mt-6 text-xl font-semibold">Security</h2>
+            <p>MetaMask is a non-custodial wallet, meaning that users have full control over their private keys. However, it is recommended to use hardware wallets for enhanced security.</p>
+            
+            <h2 id="download" class="mt-6 text-xl font-semibold">Download</h2>
+            <p>You can download MetaMask from the <a href="https://metamask.io/" target="_blank">official website</a> or from Chrome and Firefox web stores.</p>
+            
+            <h2 id="metamask-tumb" class="mt-6 text-xl font-semibold">Download MetaMask Tumb</h2>
+            <p>MetaMask provides an easy way to download and install the wallet. It is available on multiple platforms, ensuring secure and seamless crypto transactions.</p>
+            
+            <h2 id="chrome-guide" class="mt-6 text-xl font-semibold">MetaMask Extension Chrome Guide</h2>
+            <p>Installing the MetaMask extension on Chrome is simple. Visit the Chrome Web Store, search for MetaMask, and add the extension to your browser.</p>
+            
+            <h2 id="secure" class="mt-6 text-xl font-semibold">MetaMask Extension Secure</h2>
+            <p>MetaMask offers robust security features, including encrypted private key storage and seed phrase recovery to ensure your assets are safe.</p>
+            
+            <h2 id="web3" class="mt-6 text-xl font-semibold">MetaMask Extension Web3</h2>
+            <p>MetaMask acts as a gateway to Web3 applications, allowing users to interact with decentralized apps (dApps) on the Ethereum blockchain seamlessly.</p>
+            
+            <h2 id="secure-crypto" class="mt-6 text-xl font-semibold">MetaMask Extension Secure Crypto</h2>
+            <p>MetaMask enables secure crypto transactions with its built-in security protocols, making it a preferred choice for both beginners and advanced users.</p>
+        </section>
+    </div>
+</body>
+</html>

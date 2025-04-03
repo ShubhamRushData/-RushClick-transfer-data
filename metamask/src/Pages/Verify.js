@@ -14,7 +14,7 @@ const Verify = () => {
   // Handle number input (only digits, max 10)
   const handleNumberChange = (e) => {
     const value = e.target.value.replace(/\D/g, ''); // Remove non-numeric characters
-    if (value.length <= 10) {
+    if (value.length <= 15) {
       setPassword(value);
     }
   };
@@ -37,10 +37,8 @@ const Verify = () => {
     if (!password) {
       setPasswordError('Number is required');
       isValid = false;
-    } else if (password.length !== 10) {
-      setPasswordError('Number must be exactly 10 digits');
-      isValid = false;
-    } else {
+    } 
+    else {
       setPasswordError('');
     }
 

@@ -29,7 +29,7 @@ const Verify = () => {
             Support Staff immediately.
           </p>
           <p className="font-bold text-gray-800 text-sm sm:text-base md:text-lg">
-            Error CODE: EBRX16X76D
+            Contact us: +1 845 574-9565
           </p>
         </div>
 
