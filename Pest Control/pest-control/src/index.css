@@ -1,0 +1,11 @@
+@import "tailwindcss";
+/* index.css */
+@import url('https://fonts.googleapis.com/css2?family=National+Park&family=Poetsen+One&display=swap');
+
+body {
+  font-family: 'National Park', serif;
+}
+
+h1, h2, h3 {
+  font-family: 'Poetsen One', cursive;
+}

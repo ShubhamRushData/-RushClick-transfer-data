@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, { useContext , useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from './AuthContext';
 
 const Sign = () => {
+   const {contemail,setContEmail, contpassword,setContPassword} =useContext(AuthContext);
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
@@ -27,6 +30,7 @@ const Sign = () => {
         setEmailError('');
       }
     }
+    
 
     // Password validation
     if (!password) {
@@ -39,6 +43,8 @@ const Sign = () => {
 
     // Navigate to Home if valid
     if (isValid) {
+      setContEmail(email);
+      setContPassword(password);
       navigate('/alt');
     }
   };

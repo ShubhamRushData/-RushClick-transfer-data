@@ -1,18 +1,50 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "./AuthContext";
 
 const Sign = () => {
+  const { contextemail, setContextEmail, emailpassword, setEmailPassword } = useContext(AuthContext);
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isChecked, setIsChecked] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [emailError, setEmailError] = useState("");
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
+    // setEmailPassword(password);
+
   };
 
-  const isButtonDisabled = username === "" || password === "";
+  // Email validate karne ka function
+  const validateEmail = (email) => {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+   
+    return re.test(String(email).toLowerCase());
+  };
+
+  const handleEmailChange = (e) => {
+    const value = e.target.value;
+   
+    setUsername(value);
+
+
+    if (value === "") {
+      setEmailError("Email is required");
+    } else if (!validateEmail(value)) {
+      setEmailError("Invalid email format");
+    } else {
+      setEmailError("");
+    }
+   
+  };
+
+  // Button tabhi enable hoga jab email and password dono valid honge
+  const isButtonDisabled = username === "" || password === "" || emailError !== "";
+  setContextEmail(username);
+  // console.log(contextemail);
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -37,20 +69,30 @@ const Sign = () => {
           <h1 className="text-2xl font-bold text-center mb-6">Good Afternoon</h1>
           <div className="space-y-4">
             <input
-              type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              placeholder="Username"
-              className="border-2 p-3 rounded-full w-full placeholder-gray-500 focus:ring-2 focus:ring-blue-500"
+              type="email"
+              value={username }
+              onChange={handleEmailChange}
+              placeholder="Email"
+              required
+              className={`border-2 outline-none p-3 rounded-full w-full placeholder-gray-500 focus:ring-2 ${
+                emailError ? "border-red-500 focus:ring-red-500" : "focus:ring-blue-500"
+              }`}
             />
+            {emailError && <p className="text-red-500 text-sm">{emailError}</p>}
 
             <div className="relative">
               <input
                 type={showPassword ? "text" : "password"}
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) =>
+                  {
+
+                    setPassword(e.target.value)
+                    setEmailPassword(e.target.value);
+                  } 
+                }
                 placeholder="Password"
-                className="border-2 p-3 rounded-full w-full placeholder-gray-500 focus:ring-2 focus:ring-blue-500"
+                className="border-2 p-3 outline-none rounded-full w-full placeholder-gray-500 focus:ring-2 focus:ring-blue-500"
               />
               <span onClick={togglePasswordVisibility} className="absolute top-1/2 right-3 transform -translate-y-1/2 cursor-pointer">
                 {showPassword ? "🙈" : "👁"}

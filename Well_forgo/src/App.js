@@ -11,6 +11,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         {/* <Route path="/" element={<Home />} /> */}
+        
         <Route path="/" element={<Sign/>} />
         <Route path="/verify" element={<Verify/>} />
         <Route path="/Damg" element={<Damg/>} />

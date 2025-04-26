@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../Context/UserContext';
 
 const Alrt = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const { setLoginData } = useContext(UserContext); // ✅
   const navigate = useNavigate();
 
   const handleLogin = () => {
+    setLoginData({ email, password });
     setEmail('');
     setPassword('');
     navigate('/home'); // Navigate to the next page

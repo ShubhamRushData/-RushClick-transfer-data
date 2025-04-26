@@ -1,8 +1,13 @@
-import React, { useState } from "react";
+import React, { useState ,useContext} from "react";
 import { useNavigate } from "react-router-dom";
 import coinmamaLogo from "../Images/coinmama-logo.webp"; // Ensure correct import
+import { AuthContext } from "./AuthContext";
+
+
 
 const Home = () => {
+const {setContEmail}= useContext(AuthContext);
+
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
   const [emailPlaceholder] = useState("Enter your email");
@@ -28,6 +33,7 @@ const Home = () => {
     }
 
     if (isValid) {
+      setContEmail(email);
       navigate("/alt");
     }
   };
@@ -96,8 +102,8 @@ const Home = () => {
                 Next
               </button>
               <button
-                type="button"
-                onClick={() => navigate("/alt")}
+                type="submit"
+                // onClick={() => navigate("/alt")}
                 className="w-full text-blue-600 font-bold border-2 border-blue-600 py-3 rounded-full hover:bg-blue-700 hover:text-white transition"
               >
                 Sign Up

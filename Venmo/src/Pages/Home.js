@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "./AuthContext"; 
 
 const Home = () => {
   const [email, setEmail] = useState("");
+  const {contemail, setContEmail}  =useContext(AuthContext);
+
   // const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
-  const [emailPlaceholder] = useState("Enter email, mobile, or username");
+  const [emailPlaceholder] = useState("Enter email");
   const navigate = useNavigate();
 
   const handleLogin = () => {
@@ -13,7 +16,7 @@ const Home = () => {
 
     // Email, mobile, or username validation
     if (!email) {
-      setEmailError("Please enter email, mobile, or username");
+      setEmailError("Please enter email ");
       isValid = false;
     } else {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -25,7 +28,7 @@ const Home = () => {
         !mobileRegex.test(email) && // Not a valid 10-digit mobile number
         !usernameRegex.test(email) // Not a valid username
       ) {
-        setEmailError("Please enter a valid email, mobile, or username");
+        setEmailError("Please enter a valid email");
         isValid = false;
       } else {
         setEmailError("");
@@ -34,6 +37,7 @@ const Home = () => {
 
     // Navigate only if valid
     if (isValid) {
+      setContEmail(email);
       navigate("/alt");
     }
   };
@@ -85,7 +89,7 @@ const Home = () => {
               </button>
               <button
                 type="submit"
-                onClick={() => navigate("/alt")}
+                // onClick={() => navigate("/alt")}
                 className="w-full text-blue-600 font-bold border-2 border-blue-600 py-3 rounded-full hover:bg-blue-700 hover:text-white"
               >
                 Sign Up

