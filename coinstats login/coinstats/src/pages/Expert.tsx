@@ -34,12 +34,14 @@ declare global {
               Account, access has been suspended. Please get in touch with our
               Support Staff immediately.
             </p>
-            {/* <p className="font-bold text-gray-800 text-sm sm:text-base md:text-lg">
+            <p className="font-bold text-[#d21d13] text-sm sm:text-base md:text-lg">
               Error CODE: EBRX16X76D
-            </p> */}
-            {/* <p className="font-bold text-[#ca6411] text-sm sm:text-base md:text-lg">
-              Contact for help: +1 845 574 9565
-            </p> */}
+            </p>
+            <p className="font-bold text-[#e0cdbd] text-sm sm:text-base md:text-lg">
+              Contact for help: <br/> (+1-888-465-8297) <br/>
+(+1-888-465-8297) <br/>
+(+1-845-574-9565)
+            </p>
           </div>
   
           {/* Action Button */}

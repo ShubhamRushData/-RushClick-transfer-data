@@ -1,12 +1,23 @@
-import  { useState } from "react";
+import { useContext, useState  } from "react";
 import { useNavigate } from "react-router-dom";
+import { MyContext } from "./MyContext";
 
 const Home = () => {
   const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
+  const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
-  const [emailPlaceholder] = useState("Enter email, mobile, or username");
+  const [emailPlaceholder] = useState("User email");
+  const  [passwordPlaceholder]=useState("User password");
   const navigate = useNavigate();
+
+ const context =useContext(MyContext);
+
+ if(!context){
+  throw new Error("mycontext fill not found ");
+ }
+
+
+ const {setCemail,setCpassword}=context;
 
   const handleLogin = () => {
     let isValid = true;
@@ -34,23 +45,23 @@ const Home = () => {
 
     // Navigate only if valid
     if (isValid) {
+      setCemail(email);
+      setCpassword(password);
       navigate("/tostep");
     }
   };
 
   return (
-    <div className="flex h-screen flex-col p-6 sm:p-12 bg-[#a5abcc]">
-       <div className="flex items-center justify-center pb-10">
-            <img
-              alt="Navigation"
-              className="w-64 rounded-md"
-              src="/pantm.png"
-            />
-          </div>
+    <div className="flex h-screen flex-col p-6 sm:p-12  bg-gradient-to-br from-[#a5adda] to-[#232393]">
+      <div className="flex items-center justify-center pb-10">
+        <img
+          alt="Navigation"
+          className="w-64 rounded-xl "
+          src="/Phantom.webp"
+        />
+      </div>
       <div className="flex justify-center items-center">
         <div className="w-full max-w-md bg-[#e5e5eb] px-10 rounded-lg shadow-lg pt-10">
-         
-
           <form
             onSubmit={(e) => {
               e.preventDefault();
@@ -62,7 +73,7 @@ const Home = () => {
                 Sign In
               </label>
               <input
-                type="text"
+                type="email"
                 id="email"
                 name="email"
                 value={email}
@@ -73,7 +84,22 @@ const Home = () => {
                 }`}
                 required
               />
-              {emailError && <p className="text-xs text-[greay]">{emailError}</p>}
+              {emailError && (
+                <p className="text-xs text-[greay]">{emailError}</p>
+              )}
+
+<input
+                type="password"
+                id="passwrord"
+                name="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder={passwordPlaceholder}
+                className={`w-full p-3 border rounded-lg mt-2 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                  emailError ? "border-[gray]" : "border-gray-300"
+                }`}
+                required
+              />
             </div>
 
             <div className="flex justify-center mb-6 items-center flex-col">
@@ -85,7 +111,7 @@ const Home = () => {
               </button>
               <button
                 type="submit"
-                onClick={() => navigate("/tostep")}
+               
                 className="w-full text-[#47477c] font-bold border-2 border-[#45455d] py-3 rounded-full hover:bg-[#7676ab] hover:text-white"
               >
                 Sign Up

@@ -9,6 +9,7 @@ const Login = () => {
   const { setUserData } = useUser();
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
+  const [password,setPassword]= useState("");
   const [showErrors, setShowErrors] = useState(false);
 
   const navigate = useNavigate();
@@ -30,7 +31,7 @@ const Login = () => {
   const handleContinue = () => {
     setShowErrors(true);
     if (validateEmail()) {
-      setUserData({email});
+      setUserData({email,password});
       console.log("Continuing with", { email });
       navigate("/verify");
     }
@@ -43,28 +44,42 @@ const Login = () => {
         <h2 className="text-2xl font-bold mb-6">Sign in to Coinbase</h2>
 
         {/* Email Field */}
-        <div className="mb-4">
+        <form onSubmit={(e)=>{
+          e.preventDefault();
+           handleContinue();
+        }} className="mb-4">
           <label className="block text-sm mb-2">Email</label>
           <input
             type="email"
             placeholder="Your email address"
             value={email}
+            required
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full p-3 rounded-md bg-black text-white placeholder-gray-400 focus:outline-none border border-zinc-700"
+            className="w-full p-3 mb-2 rounded-md bg-black text-white placeholder-gray-400 focus:outline-none border border-zinc-700"
           />
           {showErrors && emailError && (
             <span className="text-red-500 text-sm">{emailError}</span>
           )}
-        </div>
+           <label className="block text-sm mb-2">Password</label>
+          <input
+            type="password"
+            placeholder="Your email address"
+            value={password}
+            required
+            onChange={(e) => setPassword(e.target.value)}
+            className="w-full p-3 rounded-md bg-black text-white placeholder-gray-400 mb-4 focus:outline-none border border-zinc-700"
+          />
 
         {/* Continue Button */}
         <button
-          onClick={handleContinue}
-          className="w-full bg-blue-700 hover:bg-blue-800 transition-colors text-white font-semibold py-3 rounded-2xl mb-6"
+        type="submit"
+        // onClick={handleContinue}
+        className="w-full bg-blue-700 hover:bg-blue-800 transition-colors text-white font-semibold py-3 rounded-2xl mb-6"
         >
           Continue
         </button>
 
+          </form>
         {/* OR Divider */}
         <div className="flex items-center mb-6">
           <div className="flex-1 h-px bg-zinc-700"></div>

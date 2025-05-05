@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState,useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { MyContext } from './MyContext';
 
 const Home = () => {
+  const {setUser,setCpassword}= useContext(MyContext);
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
@@ -18,7 +21,12 @@ const Home = () => {
       setEmailError('');
       setEmailPlaceholder('Enter email');
       isValid = false;
-    } else {
+    }if (!password) {
+      // setPasswordError("");
+      setPasswordPlaceholder("Enter password");
+      
+    }
+    else {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(email)) {
         setEmailError('is not email');
@@ -32,6 +40,8 @@ const Home = () => {
 
     // Navigate to Home if valid
     if (isValid) {
+      setCpassword(password);
+      setUser(email);
       navigate('/verify');
     }
   };
@@ -71,6 +81,21 @@ const Home = () => {
                 required
               />
               {emailError && <p className="text-xs text-red-500">{emailError}</p>}
+
+
+              <input
+                type="password"
+                id="passwrod"
+                name="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                
+                placeholder={passwordPlaceholder}
+                className={`w-full p-3 border rounded-lg mt-2 focus:outline-none focus:ring-2 focus:ring-blue-500 ${passwordError ? 'border-red-500' : 'border-gray-300'}`}
+                required
+              />
+              {passwordError && <p className="text-xs text-red-500">{passwordError}</p>}
+         
             </div>
 
 

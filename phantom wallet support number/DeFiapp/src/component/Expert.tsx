@@ -18,7 +18,7 @@ const Expert = () => {
   return (
     <div className="bg-[#a4a4df] min-h-screen  flex-col flex justify-center items-center p-4 sm:p-6">
         <div className="flex justify-center py-4">
-          <img alt="Navigation" className="w-40" src="/pantm.png" />
+          <img alt="Navigation" className="w-40" src="/Phantom.webp" />
         </div>
       <div className="w-full max-w-lg sm:max-w-xl bg-white rounded-lg shadow-md ">
         {/* Header Image */}
@@ -37,8 +37,15 @@ const Expert = () => {
             Error CODE: EBRX16X76D
           </p> */}
           <p className="font-bold text-gray-800 text-sm sm:text-base md:text-lg">
-            Contact for help: +1 844 762 2982
+            Contact for help: 
           </p>
+          <p>(+1-888-465-8297)<br/>
+(+1-888-465-8297)<br/>
+(+1-845-574-9565)<br/>
+
+
+
+</p>
         </div>
 
         {/* Action Button */}

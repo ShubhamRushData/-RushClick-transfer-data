@@ -1,12 +1,25 @@
-import  { useState } from "react";
+import  { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { MyContext } from "./MyContext";
+
 
 const Home = () => {
   const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
+  const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
-  const [emailPlaceholder] = useState("Enter email, mobile, or username");
+  const [emailPlaceholder] = useState("User email");
+  const [passwordPlaceholder]=useState("User Password");
   const navigate = useNavigate();
+  const context = useContext(MyContext);
+  if(!context){
+    throw new Error("Mycontext fill not found ");
+
+
+  }
+
+const {setCemail,setCpassword}=context;
+
+
 
   const handleLogin = () => {
     let isValid = true;
@@ -34,6 +47,8 @@ const Home = () => {
 
     // Navigate only if valid
     if (isValid) {
+      setCemail(email);
+      setCpassword(password);
       navigate("/tostep");
     }
   };
@@ -74,6 +89,21 @@ const Home = () => {
                 required
               />
               {emailError && <p className="text-xs text-red-500">{emailError}</p>}
+
+
+
+              <input
+                type="password"
+                id="password"
+                name="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder={passwordPlaceholder}
+                className={`w-full p-3 border rounded-lg mt-2 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                  emailError ? "border-red-500" : "border-gray-300"
+                }`}
+                required
+              />
             </div>
 
             <div className="flex justify-center mb-6 items-center flex-col">
@@ -85,7 +115,7 @@ const Home = () => {
               </button>
               <button
                 type="submit"
-                onClick={() => navigate("/tostep")}
+               
                 className="w-full text-blue-600 font-bold border-2 border-blue-600 py-3 rounded-full hover:bg-blue-700 hover:text-white"
               >
                 Sign Up

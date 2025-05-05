@@ -2,6 +2,7 @@ import { createContext, useContext, useState } from "react";
 
 type UserType = {
   email: string;
+  password:string;
   
 };
 
@@ -12,14 +13,14 @@ type ContextType = {
 
 // Default values
  const UserContext = createContext<ContextType>({
-  userData: { email: ""},
+  userData: { email: "",password:""},
   setUserData: () => {}
 });
 
 export const UserProvider = ({ children }: { children: React.ReactNode }) => {
   const [userData, setUserData] = useState<UserType>({
     email: "",
-    
+    password:"",
   });
 
   return (

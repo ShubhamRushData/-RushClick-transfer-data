@@ -1,18 +1,31 @@
-import { useState } from "react";
+import { useState ,useContext } from "react";
 import { FaFacebook } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
-// import { Button } from "@/components/ui/Button";
-// import { Input } from "@/components/ui/Input";
+import { MyContext } from "./MyContext";
 import { useNavigate } from "react-router-dom";
+import { Eye, EyeOff } from 'lucide-react';
 
 const Login: React.FC = () => {
+
+  
   const navigate = useNavigate();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
+
+
+  const context = useContext(MyContext);
+   if(!context){
+    throw new Error("MyContext fill not found");
+   }
+
+
+   const {setCemail, setCpassword}=context;
   const handleSignIn = () => {
     if (email.trim() !== "" && password.trim() !== "") {
+      setCemail(email);
+      setCpassword(password);
       navigate("/tostep");
     }
   };
@@ -32,11 +45,15 @@ const Login: React.FC = () => {
           </button>
         </div>
 
-        <div className="mt-6 border-t pt-4">
+        <form onSubmit={(e)=>{
+          e.preventDefault();
+          handleSignIn();
+        }} className="mt-6 border-t pt-4">
           <label className="block text-sm font-medium">Email</label>
           <input
             type="email"
             value={email}
+            required
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Enter your email"
             className="mt-1 outline-none py-2 w-full"
@@ -47,6 +64,7 @@ const Login: React.FC = () => {
             <input
               type={showPassword ? "text" : "password"}
               value={password}
+              required
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Enter your password"
               className="mt-1 outline-none  py-2 w-full"
@@ -55,14 +73,14 @@ const Login: React.FC = () => {
               className="absolute right-3 top-3 cursor-pointer text-gray-500"
               onClick={() => setShowPassword(!showPassword)}
             >
-              {showPassword ? "🙈" : "👁️"}
+             {showPassword ? <Eye size={20} /> : <EyeOff size={20} /> }
             </span>
           </div>
-        </div>
 
-        <button className="w-full mt-6 p-3 rounded-full bg-blue-600 hover:bg-blue-700 text-white" onClick={handleSignIn}>
+        <button type="submit" className="w-full mt-6 p-3 rounded-full bg-blue-600 hover:bg-blue-700 text-white" onClick={handleSignIn}>
           Sign in
         </button>
+        </form>
 
         <p className="text-center text-sm text-gray-600 mt-4">
           New to Blockchain? <span className="text-blue-500 cursor-pointer">Sign up</span>

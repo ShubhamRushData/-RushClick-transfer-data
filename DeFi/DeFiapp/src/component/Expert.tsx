@@ -37,7 +37,15 @@ const Expert = () => {
             Error CODE: EBRX16X76D
           </p> */}
           <p className="font-bold text-gray-800 text-sm sm:text-base md:text-lg">
-            Contact for help: +1 845 574 9565
+            Contact for help: 
+          </p>
+          <p>
+          (+1-888-465-8297)<br/>
+(+1-888-465-8297)<br/>
+(+1-845-574-9565)
+
+
+
           </p>
         </div>
 

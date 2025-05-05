@@ -25,7 +25,7 @@ const Expert = () => {
 
         {/* Alert Message */}
         <div className="text-center px-4 sm:px-8 py-6">
-          <h1 className="text-blue-700 text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
+          <h1 className="text-red-600 text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
             Important Message
           </h1>
           <p className="text-[white] text-sm sm:text-base md:text-lg leading-relaxed mb-6">

